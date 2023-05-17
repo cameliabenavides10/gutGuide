@@ -13,15 +13,26 @@ return(
   <div>
 
  
-    <div class="jumbotron">
-  <h1 class="display-4">Hello!</h1>
+    <div  className="jumbotron jumbo-tron ">
+  {/* <h1 class="display-4 ">Hello!</h1>
   <p class="lead">Welcome to Meal Planner Pro</p>
-  <hr class="my-3" />
-  <p>The ultimate solution for anyone looking to plan their meals in a hassle-free way while keeping their dietary restrictions in mind. Our website is designed to help you create a personalized meal plan for the week that perfectly suits your lifestyle and dietary preferences.</p>
+  <hr class="my-3" /> */}
+   <div class="container">
+        <div class="row">
+          <div class="col-sm-6 "> 
+  <p class="display-5" >The ultimate solution for anyone looking to plan their meals in a hassle-free way while keeping their dietary restrictions in mind. Our website is designed to help you create a personalized meal plan for the week that perfectly suits your lifestyle and dietary preferences.</p>
 
   <p class="lead">
-    <a class="btn btn-primary btn-md" href="#" role="button">Lets get started!</a>
+    <a class="btn btn-primary btn-md border-0" href="#" role="button" style={{ backgroundColor: '#5EC57E'}}>Lets get started!</a>
   </p>
+  </div>
+  <div class="col-sm-6">
+      <p class="col-sm-6">
+    HELLO
+  </p>
+  </div>
+  </div>
+  </div>
 </div>
 
 <p className='mx-5'>

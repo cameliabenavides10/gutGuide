@@ -13,27 +13,27 @@ const AppNavbar = () => {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
+      <Navbar className="nav-bar" expand='lg' >
         <Container fluid>
-          <Navbar.Brand as={Link} to='/'>
+          <Navbar.Brand as={Link} to='/' style={{ color: '#416a59', fontWeight: 'bold' }}>
             GutGuide
           </Navbar.Brand>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/'>
+              <Nav.Link as={Link} to='/' style={{ color: '#416a59', fontWeight: 'bold' }}>
                 Home
               </Nav.Link>
               {/* if user is logged in show saved books and logout */}
               {Auth.loggedIn() ? (
                 <>
-                  <Nav.Link as={Link} to='/saved'>
-                    See Your Guides
+                  <Nav.Link as={Link} to='/Guides' style={{ color: '#416a59', fontWeight: 'bold' }}>
+                    Get Your Guide
                   </Nav.Link>
-                  <Nav.Link onClick={Auth.logout}>Logout</Nav.Link>
+                  <Nav.Link onClick={Auth.logout} style={{ color: '#416a59', fontWeight: 'bold' }}>Logout</Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                <Nav.Link style={{ color: '#416a59', fontWeight: 'bold' }} onClick={() => setShowModal(true)} >Login/Sign Up</Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>

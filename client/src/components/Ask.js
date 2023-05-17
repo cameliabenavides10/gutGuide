@@ -1,12 +1,35 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-
-
+import { QUERY_MEALPLAN, QUERY_ME, QUERY_USER } from '../utils/queries';
+import { ADD_MEALPLAN } from '../utils/mutations';
+import { useMutation } from '@apollo/client';
 
 const ChatGPT = () => {
     const [prompt, setPrompt] = useState("");
     const [response, setResponse] = useState("");
-  
+    const [addMealPlan, { error }] = useMutation(ADD_MEALPLAN, {
+      update(cache, { data: { addMealPlan } }) {
+        try {
+          const { MealPlan } = cache.readQuery({ query: QUERY_MEALPLAN });
+          cache.writeQuery({
+              query: QUERY_MEALPLAN,
+              data: { MealPlans: [addMealPlan, ...MealPlan] },
+          });
+      } catch (e) {
+          console.error(e);
+      }
+      const { me } = cache.readQuery({ query: QUERY_ME });
+            cache.writeQuery({
+                query: QUERY_ME,
+                data: { me: { ...me, mealplans: [...me.mealplans, addMealPlan] } },
+            });
+    },
+  });
+
+
+
+
+
     const handleSubmit = async (event) => {
       event.preventDefault();
   
@@ -20,20 +43,20 @@ const ChatGPT = () => {
       }
     };
     return(
-        <div>
+        <div className='p-2 m-2'>
  <div className="container-fluid">
-      <div className="container mt-3" style={{ backgroundColor: 'white' }}>
-        <div className="row p-5 text-center">
-          <h4 className="col-12 mb-3" id="helpChatGPT">Feeling stuck? Ask Chat GPT for help.</h4>
-          <h6 className="col-12 mb-3" id="helpChatGPT">(Be patient, this can take up to 10 seconds.)</h6>
+     
+        <div className="p-5 text-center">
+          <h4 className="col-12 mb-3" id="helpChatGPT">Please input your dietary rescritions in order to make a meal plan</h4>
+
           <form onSubmit={handleSubmit}>
-            <textarea className="form-control col-12 mb-3"
+            <textarea className="form-control text-center"
               type="text"
               value={prompt}
               onChange={(e) => setPrompt(e.target.value)}
             />
             <button type="submit" className="col-12 btn btn-main">
-              Ask
+              Submit
             </button>
 
           </form>
@@ -44,7 +67,6 @@ const ChatGPT = () => {
             </div>
           }
         </div>
-      </div>
 
     </div>
         </div>
