@@ -17,12 +17,20 @@ h6 {
 }
 
 
-.jumbo-tron{
+html,
+.jumbo-tron {
   background-color: #ECF8E5;
   color: #347571;
+  height: 100% !Important;
 }
 
-.nav-bar{
+.front-page {
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.nav-bar {
   background-color: #5EC57E;
   font-weight: bold;
 
