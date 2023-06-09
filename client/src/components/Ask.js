@@ -8,7 +8,7 @@ import Auth from '../utils/auth';
 const ChatGPT = () => {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
-  const [mealPlan, setMealPlan] = useState('');
+  const [mealPlanText, setMealPlanText] = useState('');
 
 
   const [addMealPlan, { error }] = useMutation(ADD_MEALPLAN, {
@@ -24,15 +24,16 @@ const ChatGPT = () => {
         console.error(e);
         console.log("line 25 error")
       }
-      const { me } = cache.readQuery({ query: QUERY_ME });
-      cache.writeQuery({
-        query: QUERY_ME,
-        data: { me: { ...me, mealPlans: [...me.mealPlans, addMealPlan] } },
-      });
+      const { me } = cache.readQuery({ query: QUERY_ME }) || { me: null };
+
+if (me) {
+  cache.writeQuery({
+    query: QUERY_ME,
+    data: { me: { ...me, mealPlans: [...me.mealPlans, addMealPlan] } },
+  });
+};
     },
   });
-
-
 
 
   // storing mealplan response if client wants to db
@@ -43,12 +44,12 @@ const ChatGPT = () => {
       await addMealPlan(
         {
           variables: {
-            mealPlan,
+            mealPlanText,
             mealPlanAuthor: Auth.getProfile().data.username,
           }
         }
       )
-      setMealPlan('')
+      setMealPlanText('')
       console.log("line 52")
     }
     catch (err) {
@@ -57,12 +58,12 @@ const ChatGPT = () => {
     }
   }
 
-console.log("hello" + mealPlan)
+console.log("hello" + mealPlanText)
 
 
   // useeffect whenever we get response back itll set mealplan to that
   const handleChange = () => {
-    setMealPlan(response)
+    setMealPlanText(response)
   }
 useEffect(() => {
   handleChange();
