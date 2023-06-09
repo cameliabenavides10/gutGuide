@@ -26,12 +26,12 @@ const ChatGPT = () => {
       }
       const { me } = cache.readQuery({ query: QUERY_ME }) || { me: null };
 
-if (me) {
-  cache.writeQuery({
-    query: QUERY_ME,
-    data: { me: { ...me, mealPlans: [...me.mealPlans, addMealPlan] } },
-  });
-};
+      if (me) {
+        cache.writeQuery({
+          query: QUERY_ME,
+          data: { me: { ...me, mealPlans: [...me.mealPlans, addMealPlan] } },
+        });
+      };
     },
   });
 
@@ -58,16 +58,16 @@ if (me) {
     }
   }
 
-console.log("hello" + mealPlanText)
+  console.log("hello" + mealPlanText)
 
 
   // useeffect whenever we get response back itll set mealplan to that
   const handleChange = () => {
     setMealPlanText(response)
   }
-useEffect(() => {
-  handleChange();
-}, [response]);
+  useEffect(() => {
+    handleChange();
+  }, [response]);
 
 
   // handle submit for gpt3 api submit

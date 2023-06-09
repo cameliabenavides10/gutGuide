@@ -28,7 +28,7 @@ const AppNavbar = () => {
               {Auth.loggedIn() ? (
                 <>
                   <Nav.Link as={Link} to='/Guides' style={{ color: '#416a59', fontWeight: 'bold' }}>
-                    Get Your Guide
+                    MealPlans
                   </Nav.Link>
                   <Nav.Link onClick={Auth.logout} style={{ color: '#416a59', fontWeight: 'bold' }}>Logout</Nav.Link>
                 </>
