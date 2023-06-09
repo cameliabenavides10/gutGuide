@@ -62,9 +62,12 @@ const ChatGPT = () => {
           </form>
           <br />
           {response &&
+          <>
             <div className="col-12 mt-3">
               <pre className="response" style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>{response}</pre>
             </div>
+            <button>Save?</button>
+            </>
           }
         </div>
 

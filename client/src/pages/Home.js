@@ -7,6 +7,7 @@ import capitalizeWords from '../utils/helpers'
 import { Navigate, useParams } from 'react-router-dom';
 import { QUERY_MEALPLAN, QUERY_ME, QUERY_USER } from '../utils/queries';
 import groceries from '../assets/groceries.png'
+import List from '../components/List';
 
 
 
@@ -31,21 +32,25 @@ console.log(mealPlans)
   return (
   
     <main>
-      {/*  when signed in */}
+      {/*  HOMEPAGE WHEN SIGNED IN */}
       {Auth.loggedIn(true) ? ((
+        <>
       <div class="jumbotron jumbotron-fluid">
     <div class="container">
       <h1 class="display-4">Hello, {capitalizeWords(user.username)}.</h1>
       <p class="lead"> Welcome to GutGuide. We are here to help you make smart decisions based on your dietary restrictions and weight goals!</p>
     </div>
-  </div> )) : 
-  // when not signed in
+  
+  </div>
+   
+   < MealPlanList />
+ </>
+   )) : 
+
+
+  // HOME WHEN NOT SIGNED IN
   (
   <div  className="jumbo-tron">
-  {/* <div class="container">
-  <div class="row">   </div>
-  <div class="col-sm-6 "> </div>
-  </div> */}
    <div class="container" style={{ height: '45rem' }}>
         <div class="row front-page">
           <div class="col-sm-6 "> 
