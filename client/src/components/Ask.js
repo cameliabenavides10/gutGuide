@@ -89,18 +89,22 @@ const ChatGPT = () => {
 
         <div className="p-5 text-center">
           <h4 className="col-12 mb-3" id="helpChatGPT">Please input your dietary rescritions in order to make a meal plan</h4>
-
-          <form onSubmit={handleSubmit}>
-            <textarea className="form-control text-center"
-              type="text"
-              value={prompt}
-              onChange={(e) => setPrompt(e.target.value)}
-            />
-            <button type="submit" className="col-12 btn btn-main">
-              Submit
-            </button>
-
-          </form>
+          <div className='container'>
+            <div className='row justify-content-center'>
+              <form onSubmit={handleSubmit} className='col-md-6'>
+                <textarea className="form-control text-center mb-2 "
+                  type="text"
+                  value={prompt}
+                  onChange={(e) => setPrompt(e.target.value)}
+                />
+                <div className='d-flex justify-content-center'>
+                  <button type="submit" className="btn btn-success">
+                    Submit
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
           <br />
           {response &&
             <>

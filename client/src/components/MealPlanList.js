@@ -24,6 +24,8 @@ const MealPlanList = () => {
     }
 
 
+
+
     return (
 
         <div className='container'>
@@ -32,11 +34,25 @@ const MealPlanList = () => {
             </div>
             <div className='container'>
                 {user.mealPlans && user.mealPlans.map((mealPlan) =>
-                    <div key={mealPlan._id} className="container align-items-center mb-3">
-                        <div className='row'>{mealPlan.mealPlanText}</div>
-                        <div className='row'> {mealPlan.createdAt} </div>
-                    </div>
-                )}
+                // formatting of the text block be split of days of the week
+                {
+                    const text = mealPlan.mealPlanText
+                    const daysOfWeek = text.split(/(?=\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b)/);
+                    console.log(daysOfWeek);
+                    // formatted to break text block into each week days
+                    const formattedDays = daysOfWeek.map((day, index) => (
+                        <li key={index}>{day}</li>
+
+                    ));
+
+                    // return code for mealplan text on screen 
+                    return (
+                        <div key={mealPlan._id} className="container align-items-center mb-3">
+                            <ul>{formattedDays}</ul>
+                            <div className='row'> {mealPlan.createdAt} </div>
+                        </div>
+                    );
+                })}
             </div>
         </div>
 
