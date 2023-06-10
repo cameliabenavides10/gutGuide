@@ -41,15 +41,15 @@ const MealPlanList = () => {
                     console.log(daysOfWeek);
                     // formatted to break text block into each week days
                     const formattedDays = daysOfWeek.map((day, index) => (
-                        <li key={index}>{day}</li>
+                        <button type="button" class="list-group-item list-group-item-action" key={index}> {day}</button>
 
                     ));
 
                     // return code for mealplan text on screen 
                     return (
                         <div key={mealPlan._id} className="container align-items-center mb-3">
-                            <ul>{formattedDays}</ul>
-                            <div className='row'> {mealPlan.createdAt} </div>
+                            <div className='list-group'>{formattedDays}</div>
+                            <div className='row'> {mealPlan.createdAt} {mealPlan._id} </div>
                         </div>
                     );
                 })}
