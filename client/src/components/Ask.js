@@ -109,6 +109,7 @@ const ChatGPT = () => {
                   name="mealPlan"
                   className="response"
                   style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>{response}
+                  <br />
                   <button
                     onClick={handleListSubmit}
                   >

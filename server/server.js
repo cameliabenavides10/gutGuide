@@ -67,14 +67,17 @@ const openaiApi = axios.create({
 });
 
 app.post("/chat", async (req, res) => {
-  const { prompt } = req.body;
+  const prompt = `Can you write me a week meal plan for someone who has ${req.body}?`;
   const response = await openaiApi.post("completions", {
     model: "text-davinci-003",
     prompt: prompt,
-    max_tokens: 500,
+    temperature: 1,
+    max_tokens: 4000,
   });
   res.send(response.data.choices[0].text);
 });
+
+
 
 
 app.listen(port, () => {

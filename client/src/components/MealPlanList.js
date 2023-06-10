@@ -27,15 +27,14 @@ const MealPlanList = () => {
     return (
 
         <div className='container'>
-            <div className='lead'>
-            Hello, {capitalizeWords(user.username)}, below will be your mealplans:
+            <div className='lead mb-2'>
+                Hello, {capitalizeWords(user.username)}, below will be your mealplans:
             </div>
             <div className='container'>
                 {user.mealPlans && user.mealPlans.map((mealPlan) =>
-                    <div key={mealPlan._id} className="container align-items-center">
-                      <div className='row'>{mealPlan.mealPlanText}</div>
-
-                       <div className='row'> {mealPlan.createdAt} </div>
+                    <div key={mealPlan._id} className="container align-items-center mb-3">
+                        <div className='row'>{mealPlan.mealPlanText}</div>
+                        <div className='row'> {mealPlan.createdAt} </div>
                     </div>
                 )}
             </div>
