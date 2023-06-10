@@ -47,6 +47,6 @@ GutGuide is open source and released under the [MIT License](https://opensource.
 
 ## Contact
 
-If you have any questions or suggestions regarding GutGuide, please contact our team at gutguide@example.com.
+If you have any questions or suggestions regarding GutGuide, please contact me at https://cameliabenavides10.github.io/Portfolio/
 
 Enjoy creating healthy and personalized meal plans with GutGuide!
