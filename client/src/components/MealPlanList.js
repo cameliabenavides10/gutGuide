@@ -53,8 +53,11 @@ const MealPlanList = () => {
                         <div key={mealPlan._id} className="container align-items-center mb-3">
 
                             <div className='list-group mb-1'>{<SplitMealPlan formattedDays={formattedDays} />}</div>
-                            <div className='row'>
-                                <p>Made on:</p> {mealPlan.createdAt} {mealPlan._id} </div>
+                            <div className='container'>
+                                <div className='row'>
+                                <p className=" col mr-1">Made on: {mealPlan.createdAt} </p>  
+                                <button style={{"height": "33px", "width": "10px"}} type="button" class="btn btn-success col ">Delete</button> </div>
+                              </div>
                         </div>
                     );
                 }
