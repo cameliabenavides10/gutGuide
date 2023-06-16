@@ -13,23 +13,19 @@ export default function SplitMealPlan({ formattedDays }) {
         // and rendering them separately
         const [weekDay, breakfast, lunch, dinner] = dayContent.split('\n');
         return (
-            <button type="button" class="list-group-item list-group-item-action" key={index}>
+            <div className="list-group-item" key={index}>
 
-                <div>
-
+                <div className="mt-3">
                     <h4>{weekDay}</h4>
-
-                    <p>{breakfast}</p>
+                    <ul class="list-group"> 
+                    <li type="button" className=" btn btn-light"> {breakfast}</li>
+               
+                    <li type="button" className="btn btn-light">{lunch}</li>
+               
+                    <li type="button" className="btn btn-light"> {dinner}</li>
+                    </ul>
                 </div>
-                <div>
-
-                    <p>{lunch}</p>
-                </div>
-                <div>
-
-                    <p>{dinner}</p>
-                </div>
-            </button>
+            </div>
         );
     });
 
