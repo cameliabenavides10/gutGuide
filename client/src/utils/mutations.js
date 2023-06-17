@@ -45,4 +45,15 @@ mutation Mutation($mealPlanId: ID!, $mealPlanText: String!) {
       mealPlanText
     }
   }
+  `;
+
+export const DELETE_MEALPLAN = gql`
+mutation Mutation($mealPlanId: ID!) {
+  removeMealPlan(mealPlanId: $mealPlanId) {
+    _id
+    createdAt
+    mealPlanAuthor
+    mealPlanText
+  }
+}
 `;

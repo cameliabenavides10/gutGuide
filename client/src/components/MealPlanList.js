@@ -8,6 +8,12 @@ import { ADD_MEALPLAN } from '../utils/mutations';
 import { QUERY_MEALPLAN, QUERY_ME, QUERY_USER } from '../utils/queries';
 import capitalizeWords from '../utils/helpers'
 import SplitMealPlan from './SplitMealPlan';
+import DeleteMealPlan from './DeleteMealPlan';
+
+
+
+
+
 const MealPlanList = () => {
     const { username: userParam } = useParams();
     const { loading, data } = useQuery(userParam ? QUERY_USER : QUERY_ME, {
@@ -29,7 +35,7 @@ const MealPlanList = () => {
     return (
 
         <div className='container'>
-            <div className='lead mb-2'>
+            <div className='lead mb-3'>
                 Hello, {capitalizeWords(user.username)}, below will be your mealplans:
             </div>
             <div className='container'>
@@ -38,15 +44,10 @@ const MealPlanList = () => {
                 {
                     const text = mealPlan.mealPlanText
                     const daysOfWeek = text.split(/(?=\b(?:Monday|Tuesday|Wednesday|Thursday|Friday|Saturday|Sunday)\b)/);
-
-
-
                     // formatted to break text block into each week days
                     const formattedDays = daysOfWeek.map((day, index) => (
                         <div key={index}> {day}</div>
                     ));
-
-
 
                     // return code for mealplan text on screen 
                     return (
@@ -55,9 +56,10 @@ const MealPlanList = () => {
                             <div className='list-group mb-1'>{<SplitMealPlan formattedDays={formattedDays} />}</div>
                             <div className='container'>
                                 <div className='row'>
-                                <p className=" col mr-1">Made on: {mealPlan.createdAt} </p>  
-                                <button style={{"height": "33px", "width": "10px"}} type="button" class="btn btn-success col ">Delete</button> </div>
-                              </div>
+                                    <p className=" col mr-1">Made on: {mealPlan.createdAt} </p>
+                                    <DeleteMealPlan  mealPlan={mealPlan}/>
+                                    </div>
+                            </div>
                         </div>
                     );
                 }

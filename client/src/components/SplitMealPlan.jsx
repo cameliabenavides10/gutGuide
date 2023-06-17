@@ -8,9 +8,7 @@ export default function SplitMealPlan({ formattedDays }) {
         // Access the content of each day
         const dayContent = day.props.children[1];
 
-        // Perform any desired manipulation or rendering of the day's content
-        // For example, splitting the content into breakfast, lunch, and dinner
-        // and rendering them separately
+        // splitting the content into breakfast, lunch, and dinner
         const [weekDay, breakfast, lunch, dinner] = dayContent.split('\n');
         return (
             <div className="list-group-item" key={index}>
@@ -31,49 +29,4 @@ export default function SplitMealPlan({ formattedDays }) {
 
     return <>{renderedDays}</>;
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    // const formattedStuff = formattedDays.map((day, index) => {
-
-    //   const meals = day.split(/(?=\b(?:Breakfast|Lunch|Dinner)\b)/);
-    //   const formattedMeals = meals.map((meal, mealIndex) => (
-    //     <div className="mb-3" key={mealIndex}>{meal}</div>
-    //   ));
-
-    //   return formattedMeals;
-    // });
-
-    // return (
-    //   <>
-    {/* {formattedStuff} */ }
-    {/* </> */ }
-    // );
 }
