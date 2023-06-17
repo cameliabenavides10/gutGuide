@@ -1,9 +1,23 @@
 import MealPlanList from "./MealPlanList";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export default function SplitMealPlan({ formattedDays }) {
 
-const [completed, setCompleted ] = useState([])
+const [completed, setCompleted ] = useState([]);
+
+useEffect(() => {
+    const storedCompletedMeals = localStorage.getItem('completed');
+    if (storedCompletedMeals) {
+      setCompleted(JSON.parse(storedCompletedMeals));
+    }
+  }, []);
+  useEffect(() => {
+    localStorage.setItem('completed', JSON.stringify(completed));
+  }, [completed]);
+
+
+
+
 const handleMealClick = (index) => {
     // Check if the day is already marked as completed
     if (completed.includes(index)) {
@@ -20,8 +34,9 @@ const handleMealClick = (index) => {
     const renderedDays = formattedDays.map((day, index) => {
         // Access the content of each day
         const dayContent = day.props.children[1];
+
         // splitting the content into breakfast, lunch, and dinner
-        const [weekDay, breakfast, lunch, dinner] = dayContent.split('\n');
+        const [weekDay, breakfast, lunch, dinner] = dayContent.split(/\n\n|\n/);
         const isBreakfastCompleted = completed.includes(index * 3);
         const isLunchCompleted = completed.includes(index * 3 + 1);
         const isDinnerCompleted = completed.includes(index * 3 + 2);
