@@ -15,9 +15,6 @@ return(
 
  
     <div  className="jumbotron jumbo-tron ">
-  {/* <h1 class="display-4 ">Hello!</h1>
-  <p class="lead">Welcome to Meal Planner Pro</p>
-  <hr class="my-3" /> */}
    <div class="container">
         <div class="row ">
           <div class="col-sm-6 "> 

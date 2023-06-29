@@ -34,11 +34,12 @@ const MealPlanList = () => {
 
     return (
 
-        <div className='container'>
+        <div className='container mb-3'>
             <div className='lead mb-3'>
-                Hello, {capitalizeWords(user.username)}, below will be your mealplans:
+                {/* Hello, {capitalizeWords(user.username)},  */}
+                Below will be your mealplans:
             </div>
-            <div className='container'>
+            <div className='container' style={{width: "70vh"}}>
                 {user.mealPlans && user.mealPlans.map((mealPlan) =>
                 // formatting of the text block be split of days of the week
                 {
@@ -53,9 +54,10 @@ const MealPlanList = () => {
                     return (
                         <div key={mealPlan._id} className="container align-items-center mb-3">
 
-                            <div className='list-group mb-1'>{<SplitMealPlan formattedDays={formattedDays} />}</div>
+                            <div className='list-group mb-3' 
+                            >{<SplitMealPlan formattedDays={formattedDays} />}</div>
                             <div className='container'>
-                                <div className='row'>
+                                <div className='row mb-3'>
                                     <p className=" col mr-1">Made on: {mealPlan.createdAt} </p>
                                     <DeleteMealPlan  mealPlan={mealPlan}/>
                                     </div>

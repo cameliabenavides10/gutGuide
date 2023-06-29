@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { useNavigate} from 'react-router-dom';
 import { QUERY_MEALPLAN, QUERY_ME, QUERY_USER } from '../utils/queries';
 import { ADD_MEALPLAN } from '../utils/mutations';
 import { useMutation } from '@apollo/client';
 import Auth from '../utils/auth';
+import mealPlanList from './MealPlanList'
 
 const ChatGPT = () => {
   const [prompt, setPrompt] = useState("");
   const [response, setResponse] = useState("");
   const [mealPlanText, setMealPlanText] = useState('');
 
+  const navigate = useNavigate();
+
+  const routeChange = () => {
+    let path = `/`
+    navigate(path);
+  }
 
   const [addMealPlan, { error }] = useMutation(ADD_MEALPLAN, {
     update(cache, { data: { addMealPlan } }) {
@@ -50,12 +58,14 @@ const ChatGPT = () => {
         }
       )
       setMealPlanText('')
+      
       console.log("line 52")
     }
     catch (err) {
       console.log(err);
       console.log("line 56")
     }
+    routeChange();
   }
 
   console.log("hello" + mealPlanText)
@@ -83,6 +93,9 @@ const ChatGPT = () => {
       console.log(error);
     }
   };
+
+
+
   return (
     <div className='p-2 m-2'>
       <div className="container-fluid">
@@ -91,6 +104,10 @@ const ChatGPT = () => {
           <h4 className="col-12 mb-3" id="helpChatGPT">Please input your dietary rescritions in order to make a meal plan</h4>
           <div className='container'>
             <div className='row justify-content-center'>
+
+
+
+
               <form onSubmit={handleSubmit} className='col-md-6'>
                 <textarea className="form-control text-center mb-2 "
                   type="text"
@@ -108,14 +125,17 @@ const ChatGPT = () => {
           <br />
           {response &&
             <>
-              <form className="col-12 mt-3">
+              <form className="col-12 mt-1">
                 <pre
                   name="mealPlan"
                   className="response"
                   style={{ whiteSpace: 'pre-wrap', wordWrap: 'break-word' }}>{response}
                   <br />
                   <button
+                  className='btn btn-outline-success mt-3 mb-3'
+                  value="SaveButtonList"
                     onClick={handleListSubmit}
+
                   >
                     Save?
                   </button>

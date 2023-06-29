@@ -3,31 +3,31 @@ import { useState, useEffect } from 'react';
 
 export default function SplitMealPlan({ formattedDays }) {
 
-const [completed, setCompleted ] = useState([]);
+    const [completed, setCompleted] = useState([]);
 
-useEffect(() => {
-    const storedCompletedMeals = localStorage.getItem('completed');
-    if (storedCompletedMeals) {
-      setCompleted(JSON.parse(storedCompletedMeals));
-    }
-  }, []);
-  useEffect(() => {
-    localStorage.setItem('completed', JSON.stringify(completed));
-  }, [completed]);
+// local storage to help with completed button function
+    useEffect(() => {
+        const storedCompletedMeals = localStorage.getItem('completed');
+        if (storedCompletedMeals) {
+            setCompleted(JSON.parse(storedCompletedMeals));
+        }
+    }, []);
+    useEffect(() => {
+        localStorage.setItem('completed', JSON.stringify(completed));
+    }, [completed]);
 
 
 
-
-const handleMealClick = (index) => {
-    // Check if the day is already marked as completed
-    if (completed.includes(index)) {
-      // Remove the day from the completed list
-      setCompleted(completed.filter((dayIndex) => dayIndex !== index));
-    } else {
-      // Add the day to the completed list
-      setCompleted([...completed, index]);
-    }
-  };
+    const handleMealClick = (index) => {
+        // Check if the day is already marked as completed
+        if (completed.includes(index)) {
+            // Remove the day from the completed list
+            setCompleted(completed.filter((dayIndex) => dayIndex !== index));
+        } else {
+            // Add the day to the completed list
+            setCompleted([...completed, index]);
+        }
+    };
 
 
 
@@ -41,36 +41,37 @@ const handleMealClick = (index) => {
         const isLunchCompleted = completed.includes(index * 3 + 1);
         const isDinnerCompleted = completed.includes(index * 3 + 2);
         return (
-            <div className="list-group-item" key={index}>
+            <div style={{backgroundColor: "#ECF8E5"}} className="list-group-item" key={index}>
 
-                <div className="mt-3">
+                <div className="mt-1">
                     <h4>{weekDay}</h4>
-                    <ul class="list-group"> 
+                    <ul class="list-group">
 
-                    <li 
-                   
-                    className={isBreakfastCompleted ? 'btn btn-secondary' : 'btn btn-light'}
-                    onClick={() => handleMealClick(index * 3)}
-                    type="button" 
-                    > 
-                    {breakfast.trim()}
-                    </li>
-               
-                    <li 
-                     className={isLunchCompleted ? 'btn btn-secondary' : 'btn btn-light'}
-                     onClick={() => handleMealClick(index * 3 + 1)}
-                    type="button" 
-                    >
-                    {lunch.trim()}
-                    </li>
-               
-                    <li 
-                     className={isDinnerCompleted ? 'btn btn-secondary' : 'btn btn-light'}
-                     onClick={() => handleMealClick(index * 3 + 2)}
-                    type="button" 
-                    > 
-                    {dinner.trim()}
-                    </li>
+                        <li 
+
+                            className={isBreakfastCompleted ? 'btn btn-secondary clicked ' : 'btn btn-light not-clicked'}
+                            onClick={() => handleMealClick(index * 3)}
+                            type="button"
+                        >
+                            {breakfast.trim()}
+                        </li>
+
+                        <li
+                            className={isLunchCompleted ? 'btn btn-secondary clicked' : 'btn btn-light not-clicked'}
+                            onClick={() => handleMealClick(index * 3 + 1)}
+                            type="button"
+                        >
+                            {lunch.trim()}
+                        </li>
+
+                        <li 
+                        
+                            className={isDinnerCompleted ? 'btn btn-secondary clicked' : 'btn btn-light not-clicked'}
+                            onClick={() => handleMealClick(index * 3 + 2)}
+                            type="button"
+                        >
+                            {dinner.trim()}
+                        </li>
 
                     </ul>
                 </div>

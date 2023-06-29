@@ -35,10 +35,10 @@ console.log(mealPlans)
       {/*  HOMEPAGE WHEN SIGNED IN */}
       {Auth.loggedIn(true) ? ((
         <>
-      <div class="jumbotron jumbotron-fluid">
+      <div class="jumbotron jumbotron-fluid" style={{background: "#BBDFC8"}}>
     <div class="container">
-      <h1 class="display-4">Hello, {capitalizeWords(user.username)}.</h1>
-      <p class="lead"> Welcome to GutGuide. We are here to help you make smart decisions based on your dietary restrictions and weight goals!</p>
+      <h1 class="display-4" style={{ color: '#416a59' }}>Hello, {capitalizeWords(user.username)}.</h1>
+      <p class="lead" style={{ color: '#416a59' }}> Welcome to GutGuide. We are here to help you make smart decisions based on your dietary restrictions and weight goals!</p>
     </div>
   
   </div>
